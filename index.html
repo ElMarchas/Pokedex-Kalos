@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+    <title>Pokedex Kalos</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <div id="laMagia" class="principal hidden">
+        <div class="input-button">
+          <input
+            id="inputSearch"
+            type="text"
+            class="search-input"
+            placeholder="Pikachu"
+          />
+          <button id="buttonSearch" class="search-button">Search</button>
+        </div>
+        <div id="mainContent">
+          <div class="poke-image"><img id="imagePokemon" src="" /></div>
+          <div class="poke-name">
+            <h1 id="namePokemon">Pokemon</h1>
+          </div>
+          <div id="typePokemon" class="poke-types"></div>
+          <div id="statsPokemon" class="poke-stats">
+            HP
+            <div id="barHP" class="animated-progress progress-hp">
+              <span id="spanHP" data-progress="0"></span>
+            </div>
+            Attack
+            <div class="animated-progress progress-attack">
+              <span></span>
+            </div>
+            Defense
+            <div class="animated-progress progress-defense">
+              <span></span>
+            </div>
+            Special Attak
+            <div class="animated-progress progress-atk">
+              <span data-progress="0"></span>
+            </div>
+            Special Defense
+            <div class="animated-progress progress-def">
+              <span data-progress="0"></span>
+            </div>
+            Speed
+            <div class="animated-progress progress-speed">
+              <span data-progress="0"></span>
+            </div>
+          </div>
+          <div id="movePokemon" class="poke-muve"></div>
+        </div>
+      </div>
+      <section id="coverTop" for="state" class="section-cover-top">
+        <img class="frame-top" src="./img/svg_top.svg" alt="Pokedex Top Frame" />
+      </section>
+      <section id="sectionContent" class="section-content">
+        <div class="content-side"></div>
+        <div id="content" class="content content-closed">
+          <img
+            id="circle1"
+            class="circle-closed"
+            src="./img/fondo.svg"
+            style="z-index: 5"
+          />
+          <img
+            id="circle2"
+            class="circle-closed circle-spinning-1"
+            src="./img/c1.svg"
+            style="z-index: 6"
+          />
+          <img
+            id="circle3"
+            class="circle-closed circle-spinning-2"
+            src="./img/c2.svg"
+            style="z-index: 7"
+          />
+          <img
+            id="circle4"
+            class="circle-closed circle-spinning-3"
+            src="./img/c3.svg"
+            style="z-index: 8"
+          />
+          <img
+            id="circle5"
+            class="circle-closed"
+            src="./img/frente.svg"
+            style="z-index: 9"
+          />
+        </div>
+
+        <div class="content-side"></div>
+      </section>
+      <section id="coverBot" class="section-cover-bot">
+        <img class="frame-bot" src="./img/svg_top.svg" alt="Pokedex Bot Frame" />
+      </section>
+    </main>
+  </body>
+  <footer>
+    <p>Author: Guillermo Gomez</p>
+    <p><a href="https://github.com/ElMarchas">github.com/ElMarchas</a></p>
+  </footer>
+  <script src="js/main.js"></script>
+</html>

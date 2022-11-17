@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:grid x="0" y="0" width="10" height="10"/>
+  </defs>
+  <circle style="stroke-width: 2px; fill: rgb(187, 255, 251);" cx="810.84" cy="574.44" r="150" transform="matrix(0.999054, -0.043484, 0.043486, 0.999055, -685.052825, -389.161435)"/>
+</svg>

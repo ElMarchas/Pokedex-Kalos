@@ -1,0 +1,368 @@
+body {
+  background-color: rgb(24, 25, 26);
+  color: rgb(246, 158, 158);
+}
+main {
+  margin: auto;
+  width: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+section {
+  width: 700px;
+  height: fit-content;
+}
+svg {
+  padding: 0px;
+  margin: 0px;
+  display: block;
+}
+a {
+  color: rgb(191, 191, 191);
+}
+.section-cover-top {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  z-index: 899;
+}
+.section-cover-bot {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: 889;
+}
+.section-content {
+  margin-top: -100px;
+  margin-bottom: -100px;
+  left: 0;
+  bottom: 0;
+  transition: 2s left;
+  transition: 2s bottom;
+}
+.frame-top {
+  width: 700px;
+  vertical-align: left;
+}
+.frame-bot {
+  transform: rotate(180deg);
+  width: 700px;
+}
+.content-side {
+  height: 92px;
+  width: 200px;
+  margin-left: 250px;
+  background-color: rgb(215, 236, 235);
+}
+.circle-closed {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 385px;
+  width: 150px;
+  transition: 2s width, 2s top;
+}
+
+.circle-open {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 520px;
+  width: 678px;
+  transition: 2s width, 2s top;
+}
+@media only screen and (max-width: 720px) {
+  .circle-closed {
+    position: absolute;
+    margin-left: 294px;
+    transition: 2s width, 2s top;
+  }
+  .circle-open {
+    position: absolute;
+    margin-left: 30px;
+    top: 520px;
+    width: 678px;
+    transition: 2s width, 2s top;
+  }
+  #mainContent {
+    position: absolute;
+    margin-left: 28px;
+    left: 0;
+    width: 685px;
+  }
+}
+
+.circle-spinning-1 {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 13s;
+  animation-name: circle-spin;
+}
+.circle-spinning-2 {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 18s;
+  animation-name: circle-spin;
+}
+.circle-spinning-3 {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 25s;
+  animation-name: circle-spin;
+}
+@keyframes circle-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+.content {
+  background-color: #d7eceb;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-right: 3px solid black;
+  border-left: 3px solid black;
+  z-index: 1;
+}
+.content-open {
+  height: 800px;
+  transition: 2s height;
+}
+.content-closed {
+  height: 23px;
+  transition: 2s height;
+}
+.principal {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: 450px;
+  width: 685px;
+  height: 770px;
+  z-index: 100;
+}
+.input-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 19px;
+}
+.search-input {
+  font-size: 20px;
+  width: 300px;
+  border: 5px solid #e91b71;
+  border-radius: 15px;
+  padding: 10px 100px 10px 20px;
+  line-height: 1;
+  box-sizing: border-box;
+  outline: none;
+  color: #e91b71;
+}
+.search-input::placeholder {
+  color: #ebafc8;
+}
+.search-button {
+  font-size: 20px;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  border: 0;
+  background: #e91b71;
+  color: #fff;
+  outline: none;
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 15px;
+}
+
+.poke-image {
+  position: absolute;
+  top: 220px;
+  left: 190px;
+  text-align: center;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.poke-image img {
+  max-width: 280px;
+  max-height: 280px;
+  margin: auto;
+  display: block;
+}
+
+.poke-name {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  border: 3px solid #fff;
+  border-radius: 17px;
+  background-color: rgb(113, 175, 255);
+  color: #fff;
+  opacity: 0.9;
+}
+.poke-name h1 {
+  font-size: 60px;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  text-transform: capitalize;
+}
+.poke-types {
+  position: absolute;
+  top: 235px;
+  left: 15px;
+  color: #f10567;
+  font-size: 19px;
+  text-transform: capitalize;
+}
+.poke-types h2 {
+  padding-bottom: 4px;
+  margin: 0px;
+}
+
+.poke-moves {
+  text-transform: capitalize;
+  position: absolute;
+  top: 355px;
+  left: 15px;
+  color: #f10567;
+  font-size: 19px;
+}
+.poke-moves h2 {
+  padding-bottom: 4px;
+  margin: 0px;
+}
+.poke-moves-container {
+  max-height: 143px;
+  max-width: 120px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.poke-moves-container::-webkit-scrollbar {
+  display: none;
+}
+
+.poke-stats {
+  position: absolute;
+  top: 275px;
+  right: 15px;
+  padding: 0px;
+  margin: 0px;
+  color: #f10567;
+  font-size: 19px;
+}
+
+.animated-progress {
+  width: 180px;
+  height: 10px;
+  border-radius: 3px;
+  margin: 5px 2px;
+  border: 1px solid rgb(189, 113, 113);
+  overflow: hidden;
+  position: relative;
+}
+
+.animated-progress span {
+  height: 100%;
+  display: block;
+  width: 0;
+  color: rgb(255, 251, 251);
+  line-height: 30px;
+  position: absolute;
+  text-align: end;
+  padding-right: 5px;
+  transition: 2s width;
+}
+
+.progress-hp span {
+  background-color: red;
+}
+.progress-attack span {
+  background-color: rgb(240, 128, 48);
+}
+.progress-defense span {
+  background-color: rgb(248, 208, 48);
+}
+.progress-atk span {
+  background-color: rgb(104, 144, 240);
+}
+.progress-def span {
+  background-color: rgb(120, 200, 80);
+}
+.progress-speed span {
+  background-color: rgb(248, 88, 136);
+}
+
+.poke-cards {
+  position: absolute;
+  display: flex;
+  top: 555px;
+  left: 5px;
+  width: 675px;
+  height: 195px;
+  color: #f10567;
+  font-size: 25px;
+  text-transform: capitalize;
+  overflow-y: auto;
+}
+.poke-cards::-webkit-scrollbar {
+  width: 5px;
+}
+.poke-cards::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px grey;
+  border-radius: 10px;
+}
+.poke-cards::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+.poke-cards::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+.poke-card {
+  margin: 3px;
+  border-radius: 6px;
+  border: 2px solid rebeccapurple;
+  background-color: rgba(240, 233, 247, 0.43);
+  min-width: 170px;
+  width: 170px;
+}
+.poke-card img {
+  max-width: 125px;
+  max-height: 125px;
+  display: block;
+  margin: auto;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.poke-card-text {
+  position: absolute;
+  bottom: 6px;
+  margin-left: 25px;
+  text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hiddenot {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 5s, opacity 5s ease-in-out;
+}

@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+    <title>Pokedex Kalos</title>
+    <style>
+      body {
+        background-color: rgb(24, 25, 26);
+        color: rgb(246, 158, 158);
+      }
+      main {
+        margin: auto;
+        width: fit-content;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+      section {
+        width: 700px;
+        height: fit-content;
+      }
+      svg {
+        padding: 0px;
+        margin: 0px;
+        display: block;
+      }
+      a {
+        color: rgb(191, 191, 191);
+      }
+      .section-cover-top {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        z-index: 899;
+      }
+      .section-cover-bot {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        z-index: 889;
+      }
+      .section-content {
+        margin-top: -100px;
+        margin-bottom: -100px;
+        left: 0;
+        bottom: 0;
+        transition: 2s left;
+        transition: 2s bottom;
+      }
+      .frame-top {
+        width: 700px;
+        vertical-align: left;
+      }
+      .frame-bot {
+        transform: rotate(180deg);
+        width: 700px;
+      }
+      .content-side {
+        height: 92px;
+        width: 200px;
+        margin-left: 250px;
+        background-color: rgb(215, 236, 235);
+      }
+      .circle-closed {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 385px;
+        width: 150px;
+        transition: 2s width, 2s top;
+      }
+
+      .circle-open {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 520px;
+        width: 678px;
+        transition: 2s width, 2s top;
+      }
+      @media only screen and (max-width: 720px) {
+        .circle-closed {
+          position: absolute;
+          margin-left: 294px;
+          transition: 2s width, 2s top;
+        }
+        .circle-open {
+          position: absolute;
+          margin-left: 30px;
+          top: 520px;
+          width: 678px;
+          transition: 2s width, 2s top;
+        }
+        #mainContent {
+          position: absolute;
+          margin-left: 28px;
+          left: 0;
+          width: 685px;
+        }
+      }
+
+      .circle-spinning-1 {
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 13s;
+        animation-name: circle-spin;
+      }
+      .circle-spinning-2 {
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 18s;
+        animation-name: circle-spin;
+      }
+      .circle-spinning-3 {
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 25s;
+        animation-name: circle-spin;
+      }
+      @keyframes circle-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      .content {
+        background-color: #d7eceb;
+        margin-left: 3px;
+        margin-right: 3px;
+        border-right: 3px solid black;
+        border-left: 3px solid black;
+        z-index: 1;
+      }
+      .content-open {
+        height: 800px;
+        transition: 2s height;
+      }
+      .content-closed {
+        height: 23px;
+        transition: 2s height;
+      }
+      .principal {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        margin-top: 450px;
+        width: 685px;
+        height: 770px;
+        z-index: 100;
+      }
+      .input-button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 19px;
+      }
+      .search-input {
+        font-size: 20px;
+        width: 300px;
+        border: 5px solid #e91b71;
+        border-radius: 15px;
+        padding: 10px 100px 10px 20px;
+        line-height: 1;
+        box-sizing: border-box;
+        outline: none;
+        color: #e91b71;
+      }
+      .search-input::placeholder {
+        color: #ebafc8;
+      }
+      .search-button {
+        font-size: 20px;
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        bottom: 2px;
+        border: 0;
+        background: #e91b71;
+        color: #fff;
+        outline: none;
+        margin: 0;
+        padding: 0 10px;
+        border-radius: 15px;
+      }
+
+      .poke-image {
+        position: absolute;
+        top: 220px;
+        left: 190px;
+        text-align: center;
+        width: 280px;
+        height: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .poke-image img {
+        max-width: 280px;
+        max-height: 280px;
+        margin: auto;
+        display: block;
+      }
+
+      .poke-name {
+        position: absolute;
+        top: 150px;
+        left: 150px;
+        border: 3px solid #fff;
+        border-radius: 17px;
+        background-color: rgb(113, 175, 255);
+        color: #fff;
+        opacity: 0.9;
+      }
+      .poke-name h1 {
+        font-size: 60px;
+        margin-right: 5px;
+        margin-left: 5px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        text-transform: capitalize;
+      }
+      .poke-types {
+        position: absolute;
+        top: 235px;
+        left: 15px;
+        color: #f10567;
+        font-size: 19px;
+        text-transform: capitalize;
+      }
+      .poke-types h2 {
+        padding-bottom: 4px;
+        margin: 0px;
+      }
+
+      .poke-moves {
+        text-transform: capitalize;
+        position: absolute;
+        top: 355px;
+        left: 15px;
+        color: #f10567;
+        font-size: 19px;
+      }
+      .poke-moves h2 {
+        padding-bottom: 4px;
+        margin: 0px;
+      }
+      .poke-moves-container {
+        max-height: 143px;
+        max-width: 120px;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .poke-moves-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .poke-stats {
+        position: absolute;
+        top: 275px;
+        right: 15px;
+        padding: 0px;
+        margin: 0px;
+        color: #f10567;
+        font-size: 19px;
+      }
+
+      .animated-progress {
+        width: 180px;
+        height: 10px;
+        border-radius: 3px;
+        margin: 5px 2px;
+        border: 1px solid rgb(189, 113, 113);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .animated-progress span {
+        height: 100%;
+        display: block;
+        width: 0;
+        color: rgb(255, 251, 251);
+        line-height: 30px;
+        position: absolute;
+        text-align: end;
+        padding-right: 5px;
+        transition: 2s width;
+      }
+
+      .progress-hp span {
+        background-color: red;
+      }
+      .progress-attack span {
+        background-color: rgb(240, 128, 48);
+      }
+      .progress-defense span {
+        background-color: rgb(248, 208, 48);
+      }
+      .progress-atk span {
+        background-color: rgb(104, 144, 240);
+      }
+      .progress-def span {
+        background-color: rgb(120, 200, 80);
+      }
+      .progress-speed span {
+        background-color: rgb(248, 88, 136);
+      }
+
+      .poke-cards {
+        position: absolute;
+        display: flex;
+        top: 555px;
+        left: 5px;
+        width: 675px;
+        height: 195px;
+        color: #f10567;
+        font-size: 25px;
+        text-transform: capitalize;
+        overflow-y: auto;
+      }
+      .poke-cards::-webkit-scrollbar {
+        width: 5px;
+      }
+      .poke-cards::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 10px grey;
+        border-radius: 10px;
+      }
+      .poke-cards::-webkit-scrollbar-thumb {
+        background: red;
+        border-radius: 10px;
+      }
+      .poke-cards::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+      }
+
+      .poke-card {
+        margin: 3px;
+        border-radius: 6px;
+        border: 2px solid rebeccapurple;
+        background-color: rgba(240, 233, 247, 0.43);
+        min-width: 170px;
+        width: 170px;
+      }
+      .poke-card img {
+        max-width: 125px;
+        max-height: 125px;
+        display: block;
+        margin: auto;
+        margin-top: 6px;
+        margin-bottom: 6px;
+      }
+      .poke-card-text {
+        position: absolute;
+        bottom: 6px;
+        margin-left: 25px;
+        text-align: center;
+      }
+
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .hiddenot {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 5s, opacity 5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="laMagia" class="principal hidden">
+        <div class="input-button">
+          <input
+            id="inputSearch"
+            type="text"
+            class="search-input"
+            placeholder="Pikachu"
+          />
+          <button id="buttonSearch" class="search-button">Search</button>
+        </div>
+        <div id="mainContent">
+          <div class="poke-image"><img id="imagePokemon" src="" /></div>
+          <div class="poke-name">
+            <h1 id="namePokemon">Pokemon</h1>
+          </div>
+          <div id="typePokemon" class="poke-types"></div>
+          <div id="statsPokemon" class="poke-stats">
+            HP
+            <div id="barHP" class="animated-progress progress-hp">
+              <span id="spanHP" data-progress="0"></span>
+            </div>
+            Attack
+            <div class="animated-progress progress-attack">
+              <span></span>
+            </div>
+            Defense
+            <div class="animated-progress progress-defense">
+              <span></span>
+            </div>
+            Special Attak
+            <div class="animated-progress progress-atk">
+              <span data-progress="0"></span>
+            </div>
+            Special Defense
+            <div class="animated-progress progress-def">
+              <span data-progress="0"></span>
+            </div>
+            Speed
+            <div class="animated-progress progress-speed">
+              <span data-progress="0"></span>
+            </div>
+          </div>
+          <div id="movePokemon" class="poke-muve"></div>
+        </div>
+      </div>
+      <section id="coverTop" for="state" class="section-cover-top">
+        <div class="frame-top" alt="Pokedex Top Frame">
+          <?xml version="1.0" encoding="utf-8"?>
+          <svg
+            viewBox="0 0 372 232"
+            width="700px"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:bx="https://boxy-svg.com"
+          >
+            <defs>
+              <bx:grid x="0" y="0" width="10" height="10" />
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="40"
+                x2="265"
+                y2="250"
+                id="gradient-0"
+                spreadMethod="repeat"
+                gradientTransform="matrix(0.668995, -0.743266, 0.857143, 0.761905, -111.569522, 186.48936)"
+              >
+                <stop offset="0" style="stop-color: rgb(196, 13, 35)" />
+                <stop offset="1" style="stop-color: rgb(204, 57, 75)" />
+              </linearGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="380"
+                cy="100"
+                r="50"
+                id="gradient-2"
+                gradientTransform="matrix(2.340189, 0.025907, -0.023492, 2.121958, -506.922441, -122.040574)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(38, 5, 10)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="410"
+                cy="70.089"
+                r="20"
+                id="gradient-4"
+                gradientTransform="matrix(2.900144, -0.356529, 0.601799, 4.895262, -821.238826, -126.838054)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(40, 4, 9)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="150"
+                cy="100"
+                r="50"
+                id="gradient-5"
+                gradientTransform="matrix(1.158526, 1.640422, -2.433124, 1.718362, 219.533463, -317.899469)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(60, 8, 16)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="120"
+                cy="69.911"
+                r="20"
+                id="gradient-3"
+                gradientTransform="matrix(0.610759, 2.903578, -3.683733, 0.774863, 304.242294, -332.689755)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(59, 6, 14)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="166.105"
+                cy="142.188"
+                r="165"
+                id="gradient-1"
+                gradientTransform="matrix(1.433356, 1.0392, -0.586974, 0.809606, 35.372567, -157.732722)"
+              >
+                <stop offset="0" style="stop-color: rgb(100, 11, 18)" />
+                <stop offset="1" style="stop-color: rgb(92, 4, 17)" />
+              </radialGradient>
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="130"
+                x2="265"
+                y2="270.253"
+                id="gradient-6"
+                gradientTransform="matrix(0.743303, -0.668955, -0.100572, 0.463856, 170.204631, 306.971751)"
+                spreadMethod="reflect"
+              >
+                <stop offset="0" style="stop-color: rgb(218, 218, 218)" />
+                <stop offset="1" style="stop-color: rgb(143, 143, 143)" />
+              </linearGradient>
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="90"
+                x2="265"
+                y2="320"
+                id="gradient-7"
+                gradientTransform="matrix(-0.769219, -0.638985, 0.52174, -0.631181, 426.886419, 476.137175)"
+                spreadMethod="repeat"
+              >
+                <stop offset="0" style="stop-color: rgb(69, 69, 69)" />
+                <stop offset="1" style="stop-color: rgb(44, 40, 39)" />
+              </linearGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="265.394"
+                cy="124.373"
+                r="4.606"
+                id="gradient-8"
+              >
+                <stop offset="0" style="stop-color: rgb(36, 29, 29)" />
+                <stop offset="1" style="stop-color: rgb(41, 41, 41)" />
+              </radialGradient>
+            </defs>
+            <g transform="matrix(1, 0, 0, 1, -79, -39.252991)">
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-7)"
+                d="M 200 320 L 330 310 L 330 100 L 200 90 L 200 160 C 235.049 160 256.954 197.941 239.43 228.294 C 231.329 242.324 216.384 250.993 200.183 251.058 L 200 320 Z"
+                transform="matrix(0, -1, 1, 0, 60.00000089406967, 470.00000700354576)"
+              />
+              <path
+                style="
+                  stroke: rgb(0, 0, 0);
+                  fill: url(#gradient-6);
+                  paint-order: fill;
+                "
+                d="M 450 270 L 450 260 L 380 260 L 380 130 L 150 130 L 150 260 L 80 260 L 80 270 L 160 270 C 160 189.001 218.957 124.738 300 150 C 360 168.703 370.531 232.571 370.44 270.253 L 450 270 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-1)"
+                d="M 430 260 L 430 250 L 390 250 L 390 120 L 140 120 L 140 250 L 100 250 L 100 260 L 150 260 C 150 171.192 223.582 125.113 284.598 136.244 C 360 150 380.78 218.873 380.73 260.139 L 430 260 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <g transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)">
+                <path
+                  style="
+                    stroke: rgb(0, 0, 0);
+                    fill-rule: nonzero;
+                    paint-order: fill;
+                    fill: url(#gradient-0);
+                  "
+                  d="M 440 250 L 440 150 L 430 150 L 430 140 L 440 140 L 440 90 L 430 90 L 430 80 L 440 80 L 440 70 C 440 70 440 60 430 50 C 420 40 410 40 410 40 L 400 40 L 400 50 L 390 50 L 390 40 L 340 40 L 340 50 L 330 50 L 330 40 L 200 40 L 200 50 L 190 50 L 190 40 L 140 40 L 140 50 L 130 50 L 130 40 L 120 40 C 116.634 40.025 110 40 100 50 C 90 60 90 66.666 90 70 L 90 80 L 100 80 L 100 90 L 90 90 L 90 140 L 100 140 L 100 150 L 90 150 L 90 250 L 140 250 C 140 153.694 244.254 93.503 327.657 141.656 C 366.358 164 390.202 205.292 390.209 249.981 L 440 250 Z"
+                />
+              </g>
+              <path
+                style="
+                  stroke: rgb(0, 0, 0);
+                  paint-order: fill;
+                  fill: url(#gradient-3);
+                "
+                d="M 130 50 C 129.685 66.613 116.616 80 100 80 L 100.02 89.822 C 122.039 89.822 139.913 72.019 140 50 L 130 50 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-5)"
+                d="M 190 50 C 189.657 99.592 149.593 140 100 140 L 100 150 C 155.137 150 199.886 105.137 200 50 L 190 50 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-4)"
+                d="M 420 90 C 419.685 73.387 406.616 60 390 60 L 390.02 50.178 C 412.039 50.178 429.913 67.981 430 90 L 420 90 Z"
+                transform="matrix(-1, 0, 0, -1, 820.0000122189522, 140.17799586322892)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-2)"
+                d="M 420 150 C 419.657 100.408 379.593 60 330 60 L 330 50 C 385.137 50 429.886 94.863 430 150 L 420 150 Z"
+                transform="matrix(-1, 0, 0, -1, 760.0000113248825, 200.0000029802322)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: rgb(100, 11, 18)"
+                d="M 260.543 131.384 C 268.254 131.384 272.964 122.971 269.108 116.293 C 267.255 113.083 264.193 111.12 260.489 111.252"
+                transform="matrix(0, -1, 1, 0, 143.47117828534803, 386.1007137611614)"
+              />
+              <ellipse
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-8)"
+                cx="264.9"
+                cy="124.373"
+                rx="4.606"
+                ry="4.373"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+            </g>
+          </svg>
+        </div>
+      </section>
+      <section id="sectionContent" class="section-content">
+        <div class="content-side"></div>
+        <div id="content" class="content content-closed">
+          <div id="circle1" class="circle-closed" style="z-index: 5">
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              viewBox="0 0 300 300"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:bx="https://boxy-svg.com"
+            >
+              <defs>
+                <bx:grid x="0" y="0" width="10" height="10" />
+              </defs>
+              <circle
+                style="stroke-width: 2px; fill: rgb(187, 255, 251)"
+                cx="810.84"
+                cy="574.44"
+                r="150"
+                transform="matrix(0.999054, -0.043484, 0.043486, 0.999055, -685.052825, -389.161435)"
+              />
+            </svg>
+          </div>
+          <div
+            id="circle2"
+            class="circle-closed circle-spinning-1"
+            style="z-index: 6"
+          >
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              viewBox="0 0 300 300"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:bx="https://boxy-svg.com"
+            >
+              <defs>
+                <bx:grid x="0" y="0" width="10" height="10" />
+              </defs>
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(150, 239, 249);
+                "
+                d="M 138.838 82.465 C 156.098 81.164 176.241 69.447 187.461 58.233"
+                transform="matrix(-0.914541, 0.404492, -0.404492, -0.914541, 265.58835, 97.429806)"
+                bx:origin="0 0.724728"
+              />
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(150, 239, 249);
+                "
+                d="M 155.448 235.199 C 190.377 243.965 237.897 229.024 256.123 182.848"
+                transform="matrix(0.933374, -0.358904, 0.358904, 0.933374, -69.50547, 70.616257)"
+                bx:origin="0 0.724728"
+              />
+            </svg>
+          </div>
+          <div
+            id="circle3"
+            class="circle-closed circle-spinning-2"
+            style="z-index: 7"
+          >
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              viewBox="0 0 300 300"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:bx="https://boxy-svg.com"
+            >
+              <defs>
+                <bx:grid x="0" y="0" width="10" height="10" />
+              </defs>
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(180, 249, 255);
+                "
+                d="M 261.373 150.281 C 294.265 148.524 315.718 133.899 326.332 124.702"
+                transform="matrix(-0.587786, -0.809017, 0.809017, -0.587786, 267.248568, 379.787877)"
+                bx:origin="0 0.724728"
+              />
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(180, 249, 255);
+                "
+                d="M 62.143 102.894 C 95.035 101.137 116.488 86.512 127.102 77.315"
+                transform="matrix(-0.576081, 0.817392, -0.817392, -0.576081, 176.291787, 100.276597)"
+                bx:origin="0 0.724728"
+              />
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(180, 249, 255);
+                "
+                d="M 126.976 258.417 C 185.826 302.306 279.347 271.54 297.731 190.28"
+                transform="matrix(0.918815, -0.394689, 0.394689, 0.918815, -90.056226, 70.760467)"
+                bx:origin="0 0.724728"
+              />
+            </svg>
+          </div>
+
+          <div
+            id="circle4"
+            class="circle-closed circle-spinning-3"
+            style="z-index: 8"
+          >
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              viewBox="0 0 300 300"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:bx="https://boxy-svg.com"
+            >
+              <defs>
+                <bx:grid x="0" y="0" width="10" height="10" />
+              </defs>
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(232, 253, 253);
+                "
+                d="M 230.38 130.412 C 306.562 130.412 370.884 69.88 366.788 -6.191"
+                transform="matrix(-0.587786, -0.809017, 0.809017, -0.587786, 290.710051, 333.74209)"
+                bx:origin="0 0.724728"
+              />
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(232, 253, 253);
+                "
+                d="M 149 285.603 C 225.182 285.603 289.504 225.071 285.408 149"
+              />
+              <path
+                style="
+                  fill: none;
+                  stroke-width: 25px;
+                  stroke: rgb(232, 253, 253);
+                "
+                d="M 61.605 143.87 C 137.787 143.87 202.109 83.338 198.013 7.267"
+                transform="matrix(-0.438371, 0.898794, -0.898794, -0.438371, 184.123015, 97.481191)"
+                bx:origin="0 0.724728"
+              />
+            </svg>
+          </div>
+          <div id="circle5" class="circle-closed" style="z-index: 9">
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              viewBox="0 0 300 300"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:bx="https://boxy-svg.com"
+            >
+              <defs>
+                <bx:grid x="0" y="0" width="10" height="10" />
+              </defs>
+              <circle
+                style="
+                  stroke: rgb(186, 218, 85);
+                  vector-effect: non-scaling-stroke;
+                  stroke-width: 0px;
+                  fill: rgb(215, 236, 235);
+                "
+                cx="913.779"
+                cy="618.838"
+                r="46"
+                transform="matrix(0.999054, -0.043484, 0.043486, 0.999055, -789.825114, -428.518923)"
+              />
+              <rect
+                y="135"
+                width="300"
+                height="30"
+                style="fill: rgb(215, 236, 235)"
+                bx:origin="0.5 0.5013"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="content-side"></div>
+      </section>
+      <section id="coverBot" class="section-cover-bot">
+        <div class="frame-bot" alt="Pokedex Bot Frame">
+          <?xml version="1.0" encoding="utf-8"?>
+          <svg
+            viewBox="0 0 372 232"
+            width="700px"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:bx="https://boxy-svg.com"
+          >
+            <defs>
+              <bx:grid x="0" y="0" width="10" height="10" />
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="40"
+                x2="265"
+                y2="250"
+                id="gradient-0"
+                spreadMethod="repeat"
+                gradientTransform="matrix(0.668995, -0.743266, 0.857143, 0.761905, -111.569522, 186.48936)"
+              >
+                <stop offset="0" style="stop-color: rgb(196, 13, 35)" />
+                <stop offset="1" style="stop-color: rgb(204, 57, 75)" />
+              </linearGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="380"
+                cy="100"
+                r="50"
+                id="gradient-2"
+                gradientTransform="matrix(2.340189, 0.025907, -0.023492, 2.121958, -506.922441, -122.040574)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(38, 5, 10)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="410"
+                cy="70.089"
+                r="20"
+                id="gradient-4"
+                gradientTransform="matrix(2.900144, -0.356529, 0.601799, 4.895262, -821.238826, -126.838054)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(40, 4, 9)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="150"
+                cy="100"
+                r="50"
+                id="gradient-5"
+                gradientTransform="matrix(1.158526, 1.640422, -2.433124, 1.718362, 219.533463, -317.899469)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(60, 8, 16)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="120"
+                cy="69.911"
+                r="20"
+                id="gradient-3"
+                gradientTransform="matrix(0.610759, 2.903578, -3.683733, 0.774863, 304.242294, -332.689755)"
+              >
+                <stop offset="0" style="stop-color: rgba(100, 11, 18, 1)" />
+                <stop offset="1" style="stop-color: rgb(59, 6, 14)" />
+              </radialGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="166.105"
+                cy="142.188"
+                r="165"
+                id="gradient-1"
+                gradientTransform="matrix(1.433356, 1.0392, -0.586974, 0.809606, 35.372567, -157.732722)"
+              >
+                <stop offset="0" style="stop-color: rgb(100, 11, 18)" />
+                <stop offset="1" style="stop-color: rgb(92, 4, 17)" />
+              </radialGradient>
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="130"
+                x2="265"
+                y2="270.253"
+                id="gradient-6"
+                gradientTransform="matrix(0.743303, -0.668955, -0.100572, 0.463856, 170.204631, 306.971751)"
+                spreadMethod="reflect"
+              >
+                <stop offset="0" style="stop-color: rgb(218, 218, 218)" />
+                <stop offset="1" style="stop-color: rgb(143, 143, 143)" />
+              </linearGradient>
+              <linearGradient
+                gradientUnits="userSpaceOnUse"
+                x1="265"
+                y1="90"
+                x2="265"
+                y2="320"
+                id="gradient-7"
+                gradientTransform="matrix(-0.769219, -0.638985, 0.52174, -0.631181, 426.886419, 476.137175)"
+                spreadMethod="repeat"
+              >
+                <stop offset="0" style="stop-color: rgb(69, 69, 69)" />
+                <stop offset="1" style="stop-color: rgb(44, 40, 39)" />
+              </linearGradient>
+              <radialGradient
+                gradientUnits="userSpaceOnUse"
+                cx="265.394"
+                cy="124.373"
+                r="4.606"
+                id="gradient-8"
+              >
+                <stop offset="0" style="stop-color: rgb(36, 29, 29)" />
+                <stop offset="1" style="stop-color: rgb(41, 41, 41)" />
+              </radialGradient>
+            </defs>
+            <g transform="matrix(1, 0, 0, 1, -79, -39.252991)">
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-7)"
+                d="M 200 320 L 330 310 L 330 100 L 200 90 L 200 160 C 235.049 160 256.954 197.941 239.43 228.294 C 231.329 242.324 216.384 250.993 200.183 251.058 L 200 320 Z"
+                transform="matrix(0, -1, 1, 0, 60.00000089406967, 470.00000700354576)"
+              />
+              <path
+                style="
+                  stroke: rgb(0, 0, 0);
+                  fill: url(#gradient-6);
+                  paint-order: fill;
+                "
+                d="M 450 270 L 450 260 L 380 260 L 380 130 L 150 130 L 150 260 L 80 260 L 80 270 L 160 270 C 160 189.001 218.957 124.738 300 150 C 360 168.703 370.531 232.571 370.44 270.253 L 450 270 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-1)"
+                d="M 430 260 L 430 250 L 390 250 L 390 120 L 140 120 L 140 250 L 100 250 L 100 260 L 150 260 C 150 171.192 223.582 125.113 284.598 136.244 C 360 150 380.78 218.873 380.73 260.139 L 430 260 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <g transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)">
+                <path
+                  style="
+                    stroke: rgb(0, 0, 0);
+                    fill-rule: nonzero;
+                    paint-order: fill;
+                    fill: url(#gradient-0);
+                  "
+                  d="M 440 250 L 440 150 L 430 150 L 430 140 L 440 140 L 440 90 L 430 90 L 430 80 L 440 80 L 440 70 C 440 70 440 60 430 50 C 420 40 410 40 410 40 L 400 40 L 400 50 L 390 50 L 390 40 L 340 40 L 340 50 L 330 50 L 330 40 L 200 40 L 200 50 L 190 50 L 190 40 L 140 40 L 140 50 L 130 50 L 130 40 L 120 40 C 116.634 40.025 110 40 100 50 C 90 60 90 66.666 90 70 L 90 80 L 100 80 L 100 90 L 90 90 L 90 140 L 100 140 L 100 150 L 90 150 L 90 250 L 140 250 C 140 153.694 244.254 93.503 327.657 141.656 C 366.358 164 390.202 205.292 390.209 249.981 L 440 250 Z"
+                />
+              </g>
+              <path
+                style="
+                  stroke: rgb(0, 0, 0);
+                  paint-order: fill;
+                  fill: url(#gradient-3);
+                "
+                d="M 130 50 C 129.685 66.613 116.616 80 100 80 L 100.02 89.822 C 122.039 89.822 139.913 72.019 140 50 L 130 50 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-5)"
+                d="M 190 50 C 189.657 99.592 149.593 140 100 140 L 100 150 C 155.137 150 199.886 105.137 200 50 L 190 50 Z"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-4)"
+                d="M 420 90 C 419.685 73.387 406.616 60 390 60 L 390.02 50.178 C 412.039 50.178 429.913 67.981 430 90 L 420 90 Z"
+                transform="matrix(-1, 0, 0, -1, 820.0000122189522, 140.17799586322892)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-2)"
+                d="M 420 150 C 419.657 100.408 379.593 60 330 60 L 330 50 C 385.137 50 429.886 94.863 430 150 L 420 150 Z"
+                transform="matrix(-1, 0, 0, -1, 760.0000113248825, 200.0000029802322)"
+              />
+              <path
+                style="stroke: rgb(0, 0, 0); fill: rgb(100, 11, 18)"
+                d="M 260.543 131.384 C 268.254 131.384 272.964 122.971 269.108 116.293 C 267.255 113.083 264.193 111.12 260.489 111.252"
+                transform="matrix(0, -1, 1, 0, 143.47117828534803, 386.1007137611614)"
+              />
+              <ellipse
+                style="stroke: rgb(0, 0, 0); fill: url(#gradient-8)"
+                cx="264.9"
+                cy="124.373"
+                rx="4.606"
+                ry="4.373"
+                transform="matrix(1, 0, 0, 1, -1.4210854715202004e-14, 0)"
+              />
+            </g>
+          </svg>
+        </div>
+      </section>
+    </main>
+  </body>
+  <footer>
+    <p>Author: Guillermo Gomez</p>
+    <p><a href="https://github.com/ElMarchas">github.com/ElMarchas</a></p>
+  </footer>
+  <script>
+    listPokemon = []; //GLOBAL para almacenar pokemones
+
+    const getPokemon = async (request) => {
+      //898 max pokemon
+      let pokequest;
+      try {
+        pokequest = request.toLowerCase();
+      } catch (error) {
+        pokequest = request;
+      }
+      document.getElementById("inputSearch").value = "";
+
+      let ObjetExist = listPokemon.find((pokemon) => pokemon.id == pokequest);
+      if (ObjetExist) {
+        alert("Pokemon already listed");
+        focusPokemon(pokequest);
+        return;
+      }
+
+      const dataPokemon = await fetch(
+        "https://pokeapi.co/api/v2/pokemon/" + pokequest
+      )
+        .then((response) => response.json())
+        .catch((error) => console.log(error));
+      if (dataPokemon) {
+        let ObjetExist = listPokemon.find(
+          (pokemon) => pokemon.id == dataPokemon.id
+        );
+        if (ObjetExist) {
+          focusPokemon(dataPokemon.id);
+          alert("Pokemon already listed");
+          return;
+        }
+
+        let imagen = dataPokemon.sprites.other.dream_world.front_default
+          ? dataPokemon.sprites.other.dream_world.front_default
+          : dataPokemon.sprites.other.home.front_default;
+        const objeto = {
+          id: dataPokemon.id,
+          imagePokemon: imagen,
+          namePokemon: dataPokemon.name,
+          typePokemon: dataPokemon.types,
+          statsPokemon: dataPokemon.stats,
+          movesPokemon: dataPokemon.moves,
+        };
+        listPokemon.push(objeto);
+        //console.log(listPokemon);
+        renderPokemon();
+      } else {
+        console.log("no data");
+      }
+    };
+
+    getPokemon(Math.floor(Math.random() * 898 + 1));
+    getPokemon(Math.floor(Math.random() * 898 + 1));
+    getPokemon(Math.floor(Math.random() * 898 + 1));
+    getPokemon(Math.floor(Math.random() * 898 + 1));
+    getPokemon(Math.floor(Math.random() * 898 + 1)); //obtener 5 pokemones al render
+
+    //pintar pokemones en la pagina
+    const renderPokemon = () => {
+      if (listPokemon.length < 1) return;
+
+      const statCal = (value) => {
+        return (175 * value) / 255;
+      };
+
+      const mainDiv = document.getElementById("mainContent");
+      mainDiv.innerHTML = "";
+      const divImage = document.createElement("div");
+      const divName = document.createElement("div");
+      const divType = document.createElement("div");
+      const divMoves = document.createElement("div");
+      const divStats = document.createElement("div");
+      const imgPoke = document.createElement("img");
+      const h1Name = document.createElement("H1");
+
+      const divCards = document.createElement("div");
+      divCards.className = "poke-cards";
+
+      divImage.className = "poke-image";
+      imgPoke.id = "imagePokemon";
+      divName.className = "poke-name";
+      h1Name.id = "namePokemon";
+      divType.id = "typePokemon";
+      divType.className = "poke-types";
+      divMoves.id = "movePokemon";
+      divMoves.className = "poke-moves";
+      divStats.className = "poke-stats";
+      imgPoke.src = "";
+
+      mainDiv.append(divCards);
+
+      listPokemon
+        .slice(0)
+        .reverse()
+        .map((pokemon, index) => {
+          if (index == 0) {
+            imgPoke.src = pokemon.imagePokemon;
+            divImage.append(imgPoke);
+            mainDiv.append(divImage);
+
+            h1Name.textContent = pokemon.namePokemon;
+            divName.append(h1Name);
+            mainDiv.append(divName);
+
+            divType.innerHTML = "<h2>Types:</h2>";
+            for (let key in pokemon.typePokemon) {
+              divType.innerHTML += `<div> ${pokemon.typePokemon[key].type.name}</div>`;
+            }
+            mainDiv.append(divType);
+
+            divMoves.innerHTML = `<h2>Moves: ${pokemon.movesPokemon.length}</h2>`;
+            let containerMove = "";
+            for (let key in pokemon.movesPokemon) {
+              containerMove += `<div> ${pokemon.movesPokemon[key].move.name}</div>`;
+            }
+            divMoves.innerHTML += `<div class="poke-moves-container">${containerMove}</div>`;
+            mainDiv.append(divMoves);
+
+            divStats.innerHTML = `HP ${pokemon.statsPokemon[0].base_stat}
+        <div id="barHP" title="${pokemon.statsPokemon[0].base_stat}" class="animated-progress progress-hp">
+          <span id="spanHP" ></span>
+        </div>
+        Attack ${pokemon.statsPokemon[1].base_stat}
+        <div title="${pokemon.statsPokemon[1].base_stat}" class="animated-progress progress-attack">
+            <span id="spanAttack" ></span>
+        </div>
+        Defense ${pokemon.statsPokemon[2].base_stat}
+        <div title="${pokemon.statsPokemon[2].base_stat}" class="animated-progress progress-defense">
+            <span id="spanDefense" ></span>
+        </div>
+        Special Attak ${pokemon.statsPokemon[3].base_stat}
+        <div title="${pokemon.statsPokemon[3].base_stat}" class="animated-progress progress-atk">
+            <span id="spanSatk" ></span>  
+        </div>
+        Special Defense ${pokemon.statsPokemon[4].base_stat}
+        <div title="${pokemon.statsPokemon[4].base_stat}" class="animated-progress progress-def">
+            <span id="spanSdef" ></span>
+        </div>
+        Speed ${pokemon.statsPokemon[5].base_stat}
+        <div title="${pokemon.statsPokemon[5].base_stat}" class="animated-progress progress-speed">
+            <span id="spanSpeed" ></span>
+        </div>`;
+            mainDiv.append(divStats);
+            document.getElementById("spanHP").style.width =
+              statCal(pokemon.statsPokemon[0].base_stat) + "px";
+            document.getElementById("spanAttack").style.width =
+              statCal(pokemon.statsPokemon[1].base_stat) + "px";
+            document.getElementById("spanDefense").style.width =
+              statCal(pokemon.statsPokemon[2].base_stat) + "px";
+            document.getElementById("spanSatk").style.width =
+              statCal(pokemon.statsPokemon[3].base_stat) + "px";
+            document.getElementById("spanSdef").style.width =
+              statCal(pokemon.statsPokemon[4].base_stat) + "px";
+            document.getElementById("spanSpeed").style.width =
+              statCal(pokemon.statsPokemon[5].base_stat) + "px";
+          } else {
+            let containerCard = "";
+            containerCard = `<div class="poke-card" onclick="focusPokemon(${pokemon.id})">
+          <img src="${pokemon.imagePokemon}" alt="${pokemon.namePokemon}" >
+          <div class="poke-card-text">${pokemon.namePokemon}</div>
+        </div>`;
+
+            divCards.innerHTML += containerCard;
+          }
+        });
+    };
+    const focusPokemon = (id) => {
+      let myPokemon = listPokemon.find((pokemon) => pokemon.id == id);
+
+      for (let key in listPokemon) {
+        if (listPokemon[key].id == id) {
+          listPokemon.splice(key, 1);
+        }
+      }
+
+      listPokemon.push(myPokemon);
+      console.log(listPokemon);
+      renderPokemon();
+    };
+
+    const start = () => {
+      const inputSearch = document.getElementById("inputSearch");
+      const buttonSearch = document.getElementById("buttonSearch");
+      const coverTop = document.getElementById("coverTop");
+      const coverBot = document.getElementById("coverBot");
+      const circle1 = document.getElementById("circle1");
+      const circle2 = document.getElementById("circle2");
+      const circle3 = document.getElementById("circle3");
+      const circle4 = document.getElementById("circle4");
+      const circle5 = document.getElementById("circle5");
+      const content = document.getElementById("content");
+      const laMagia = document.getElementById("laMagia");
+
+      const openClose = () => {
+        content.classList.contains("content-closed")
+          ? content.classList.replace("content-closed", "content-open")
+          : content.classList.replace("content-open", "content-closed");
+
+        if (circle1.classList.contains("circle-closed")) {
+          laMagia.classList.replace("hidden", "hiddenot");
+          circle1.classList.replace("circle-closed", "circle-open");
+          circle2.classList.replace("circle-closed", "circle-open");
+          circle3.classList.replace("circle-closed", "circle-open");
+          circle4.classList.replace("circle-closed", "circle-open");
+          circle5.classList.replace("circle-closed", "circle-open");
+        } else {
+          laMagia.classList.replace("hiddenot", "hidden");
+          circle1.classList.replace("circle-open", "circle-closed");
+          circle2.classList.replace("circle-open", "circle-closed");
+          circle3.classList.replace("circle-open", "circle-closed");
+          circle4.classList.replace("circle-open", "circle-closed");
+          circle5.classList.replace("circle-open", "circle-closed");
+        }
+      };
+
+      coverTop.addEventListener("click", () => {
+        openClose();
+      });
+
+      coverBot.addEventListener("click", () => {
+        openClose();
+      });
+
+      inputSearch.addEventListener("keypress", (e) => {
+        if (e.key == "Enter") getPokemon(inputSearch.value);
+      });
+
+      buttonSearch.addEventListener("click", () => {
+        getPokemon(inputSearch.value);
+      });
+    };
+
+    start();
+  </script>
+</html>

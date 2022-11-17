@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:grid x="0" y="0" width="10" height="10"/>
+  </defs>
+  <path style="fill: none; stroke-width: 25px; stroke: rgb(150, 239, 249);" d="M 138.838 82.465 C 156.098 81.164 176.241 69.447 187.461 58.233" transform="matrix(-0.914541, 0.404492, -0.404492, -0.914541, 265.58835, 97.429806)" bx:origin="0 0.724728"/>
+  <path style="fill: none; stroke-width: 25px; stroke: rgb(150, 239, 249);" d="M 155.448 235.199 C 190.377 243.965 237.897 229.024 256.123 182.848" transform="matrix(0.933374, -0.358904, 0.358904, 0.933374, -69.50547, 70.616257)" bx:origin="0 0.724728"/>
+</svg>
